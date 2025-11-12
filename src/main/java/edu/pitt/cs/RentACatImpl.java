@@ -19,19 +19,21 @@ public class RentACatImpl implements RentACat {
 
 	public boolean returnCat(int id) {
 		// TODO: Fill in
-		
 		Cat cat = getCat(id);
-		if (cat == null) {
-			return false;
+		if(cat != null)
+		{
+			if(cat.getRented())
+			{
+				cat.returnCat();
+				System.out.println("Welcome back, " + cat.getName() + "!");
+				return true;
+			}
+			else
+			{
+				System.out.println(cat.getName() + " is already here!");
+			}
 		}
-		if (cat.getRented()) {
-			cat.returnCat();
-			System.out.println("Welcome back, " + cat.getName() + "!");
-			return true;
-		} else {
-			System.out.println(cat.getName() + " is already here!");
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -46,19 +48,21 @@ public class RentACatImpl implements RentACat {
 
 	public boolean rentCat(int id) {
 		// TODO: Fill in
-
 		Cat cat = getCat(id);
-		if (cat == null) {
-			return false;
+		if(cat != null)
+		{
+			if(!cat.getRented())
+			{
+				cat.rentCat();
+				System.out.println(cat.getName() + " has been rented.");
+				return true;
+			}
+			else
+			{
+				System.out.println("Sorry, " + cat.getName() + " is not here!");
+			}
 		}
-		if (!cat.getRented()) {
-			cat.rentCat();
-			System.out.println(cat.getName() + " has been rented.");
-			return true;
-		} else {
-			System.out.println("Sorry, " + cat.getName() + " is not here!");
-			return false;
-		}
+		return false;
 	}
 
 	/**
@@ -72,16 +76,13 @@ public class RentACatImpl implements RentACat {
 
 	public boolean renameCat(int id, String name) {
 		// TODO: Fill in
-
-		Cat c = getCat(id);
-
-		if (c == null) {
-			System.out.println("Invalid cat ID.");
-			return false;
+		Cat cat = getCat(id);
+		if(cat != null)
+		{
+			cat.renameCat(name);
+			return true;
 		}
-		
-		return true;
-		
+		return false;
 	}
 
 	/**
@@ -96,14 +97,15 @@ public class RentACatImpl implements RentACat {
 
 	public String listCats() {
 		// TODO: Fill in
-		
-		StringBuilder sb = new StringBuilder();
-		for (Cat cat : cats) {
-			if (!cat.getRented()) {
-				sb.append(cat.toString()).append("\n");
+		String list = "";
+		for(Cat cat : cats)
+		{
+			if(!cat.getRented())
+			{
+				list += cat.toString() + "\n";
 			}
 		}
-		return sb.toString();
+		return list;
 	}
 
 	/**

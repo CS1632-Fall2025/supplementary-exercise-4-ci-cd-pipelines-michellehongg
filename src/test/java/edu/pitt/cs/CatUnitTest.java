@@ -32,7 +32,7 @@ public class CatUnitTest {
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
-
+		
 		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 	}
 
@@ -55,8 +55,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
-
-		assertEquals(1, c.getId());
+		int id = c.getId();
+		
+		assertEquals(1, id);
 	}
 
 	/**
@@ -71,8 +72,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
-
-		assertEquals("Jennyanydots", c.getName());
+		String name = c.getName();
+		
+		assertEquals("Jennyanydots", name);
 	}
 
 	/**
@@ -87,8 +89,9 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
+		boolean rented = c.getRented();
 
-		assertFalse(c.getRented());
+		assertFalse(rented);
 	}
 
 	/**
@@ -103,8 +106,9 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		String ret = c.toString();
 
-		assertEquals("ID 1. Jennyanydots", c.toString());
+		assertEquals("ID 1. Jennyanydots", ret);
 	}
 
 	/**
@@ -120,9 +124,10 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
-
 		c.rentCat();
-		assertTrue(c.getRented());
+		boolean rented = c.getRented();
+
+		assertTrue(rented);
 	}
 
 	/**
@@ -139,10 +144,11 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
-
 		c.rentCat();
 		c.returnCat();
-		assertFalse(c.getRented());
+		boolean rented = c.getRented();
+
+		assertFalse(rented);
 	}
 
 	/**
@@ -158,10 +164,12 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
-
 		c.renameCat("Garfield");
-		assertEquals("Garfield", c.getName());
-		assertEquals("ID 1. Garfield", c.toString());
+		String name = c.getName();
+		String ret = c.toString();
+
+		assertEquals("Garfield", name);
+		assertEquals("ID 1. Garfield", ret);
 	}
 
 }
